@@ -1,8 +1,9 @@
-package br.edu.idp.es.stsw.bva;
+package br.edu.idp.es.stsw.bva.unit;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.MethodSource;
+import br.edu.idp.es.stsw.bva.DroneMissionPolicy;
 
 import java.util.stream.Stream;
 
@@ -11,16 +12,16 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 @DisplayName("Worst-Case BVA (5³ = 125 casos)")
 class WorstCaseBvaTest {
 
-    static final int[] BATERIA    = {30, 31, 70, 99, 100};
-    static final int[] VENTO      = { 0,  1, 20, 39,  40};
-    static final int[] PESO_CARGA = { 1,  2,  4,  7,   8};
+    static final int[] BATERIA = { 30, 31, 70, 99, 100 };
+    static final int[] VENTO = { 0, 1, 20, 39, 40 };
+    static final int[] PESO_CARGA = { 1, 2, 4, 7, 8 };
 
     static Stream<int[]> combinacoes() {
         Stream.Builder<int[]> builder = Stream.builder();
         for (int bat : BATERIA)
             for (int ven : VENTO)
                 for (int carga : PESO_CARGA)
-                    builder.add(new int[]{bat, ven, carga});
+                    builder.add(new int[] { bat, ven, carga });
         return builder.build();
     }
 

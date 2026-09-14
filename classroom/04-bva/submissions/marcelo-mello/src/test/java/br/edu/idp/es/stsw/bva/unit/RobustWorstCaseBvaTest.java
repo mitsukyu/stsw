@@ -1,8 +1,9 @@
-package br.edu.idp.es.stsw.bva;
+package br.edu.idp.es.stsw.bva.unit;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.MethodSource;
+import br.edu.idp.es.stsw.bva.DroneMissionPolicy;
 
 import java.util.stream.Stream;
 
@@ -11,13 +12,21 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 @DisplayName("Robust Worst-Case BVA (7³ = 343 casos)")
 class RobustWorstCaseBvaTest {
 
-    static final int[] BATERIA    = {29, 30, 31, 70, 99, 100, 101};
-    static final int[] VENTO      = {-1,  0,  1, 20, 39,  40,  41};
-    static final int[] PESO_CARGA = { 0,  1,  2,  4,  7,   8,   9};
+    static final int[] BATERIA = { 29, 30, 31, 70, 99, 100, 101 };
+    static final int[] VENTO = { -1, 0, 1, 20, 39, 40, 41 };
+    static final int[] PESO_CARGA = { 0, 1, 2, 4, 7, 8, 9 };
 
-    static boolean bateriaValida(int v)   { return v >= 30 && v <= 100; }
-    static boolean ventoValido(int v)     { return v >= 0  && v <= 40;  }
-    static boolean cargaValida(int v)     { return v >= 1  && v <= 8;   }
+    static boolean bateriaValida(int v) {
+        return v >= 30 && v <= 100;
+    }
+
+    static boolean ventoValido(int v) {
+        return v >= 0 && v <= 40;
+    }
+
+    static boolean cargaValida(int v) {
+        return v >= 1 && v <= 8;
+    }
 
     static Stream<Object[]> combinacoes() {
         Stream.Builder<Object[]> builder = Stream.builder();
@@ -27,8 +36,8 @@ class RobustWorstCaseBvaTest {
                     boolean autorizada = bateriaValida(bat)
                             && ventoValido(ven)
                             && cargaValida(carga);
-                    builder.add(new Object[]{bat, ven, carga,
-                            autorizada ? "AUTORIZADA" : "NEGADA"});
+                    builder.add(new Object[] { bat, ven, carga,
+                            autorizada ? "AUTORIZADA" : "NEGADA" });
                 }
         return builder.build();
     }
